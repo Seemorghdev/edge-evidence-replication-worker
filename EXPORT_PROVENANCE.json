@@ -1,0 +1,277 @@
+{
+  "canonical_commit": "8e6af991ff5139413a5c9e43c66255a321dc4660",
+  "canonical_repository": "Seemorghdev/edge-evidence-platform",
+  "component": "replication-worker",
+  "content_tree_sha256": "7bbd6199e946a4c917a0b7df68a99c41d6e8b25414676b6c6a5dfe0e221c1c61",
+  "dependency_closure": [
+    "apps/__init__.py",
+    "apps/_cli.py",
+    "apps/replication_worker/__init__.py",
+    "apps/replication_worker/cli.py",
+    "apps/replication_worker/target_config.py",
+    "packages/__init__.py",
+    "packages/database/__init__.py",
+    "packages/database/migrations.py",
+    "packages/database/replication_target_migration_v10.py",
+    "packages/replication/__init__.py",
+    "packages/replication/adapters/__init__.py",
+    "packages/replication/adapters/gcs/__init__.py",
+    "packages/replication/adapters/gcs/model.py",
+    "packages/replication/adapters/gcs/target.py",
+    "packages/replication/adapters/nfs/__init__.py",
+    "packages/replication/adapters/nfs/filesystem.py",
+    "packages/replication/adapters/nfs/inspection.py",
+    "packages/replication/adapters/nfs/model.py",
+    "packages/replication/adapters/nfs/target.py",
+    "packages/replication/contracts/__init__.py",
+    "packages/replication/contracts/model.py",
+    "packages/replication/contracts/target.py",
+    "packages/replication/core/__init__.py",
+    "packages/replication/core/authority.py",
+    "packages/replication/core/source.py",
+    "packages/replication/core/worker.py",
+    "packages/replication/worker.py"
+  ],
+  "descriptor": {
+    "git_blob_sha": "de2942a8d5e4daf8366e77be242443ef11602ff8",
+    "path": "exports/replication-worker/export.toml"
+  },
+  "entry_point": "apps.replication_worker.cli:main",
+  "exporter": {
+    "git_blob_sha": "4b2ab4e50df4829f28af6f8dcb16062b7630fb8e",
+    "path": "tools/export_public_component.py"
+  },
+  "exporter_version": 1,
+  "generated_files": [
+    {
+      "mode": "100644",
+      "output_path": ".github/workflows/ci.yml",
+      "sha256": "6c9c6e93be2c852dbb99c8595362602162fb4ee76a459feededad1740524c858",
+      "template_git_blob_sha": "6eff74140bb02b19e991b5f87fe07fe44ba2a16f",
+      "template_path": "exports/replication-worker/public/.github/workflows/ci.yml"
+    },
+    {
+      "mode": "100644",
+      "output_path": "CONTRIBUTING.md",
+      "sha256": "7c01554155960b3506f9c798ca9f724b8194c9e1d645dca80372a7a938f07cdd",
+      "template_git_blob_sha": "b049738c1fd45e38e1c9942bcbf3b570aeda362c",
+      "template_path": "exports/replication-worker/public/CONTRIBUTING.md"
+    },
+    {
+      "mode": "100644",
+      "output_path": "DEPENDENCY_BOUNDARY.md",
+      "sha256": "e8815b55ce23fa46f6b3c129b7f997196d55d8682f748ac17835109c8dd91feb",
+      "template_git_blob_sha": "",
+      "template_path": "<generated>"
+    },
+    {
+      "mode": "100644",
+      "output_path": "LICENSE",
+      "sha256": "dcb9cd377676a7e03cfd33f1ce1600017c599e7771aa28493e7d424f92b06aa2",
+      "template_git_blob_sha": "da45de6096041c15c0ebd8809df645adfe462ff1",
+      "template_path": "exports/replication-worker/public/LICENSE"
+    },
+    {
+      "mode": "100644",
+      "output_path": "README.md",
+      "sha256": "d7848e3b6fbbaaa8ae4cad983916481249ee676d704fd8c9329ce0981cf63584",
+      "template_git_blob_sha": "766e08172ae9b111ae04028b6faac64240d531ae",
+      "template_path": "exports/replication-worker/public/README.md"
+    },
+    {
+      "mode": "100644",
+      "output_path": "pyproject.toml",
+      "sha256": "73eb5c4c300810fb98cf74866e485002b9a72e80c6c62f48f74d2890d7ccacfd",
+      "template_git_blob_sha": "8a3d212ca83d9b904d95b4af0097e4c08ac18842",
+      "template_path": "exports/replication-worker/public/pyproject.toml"
+    },
+    {
+      "mode": "100644",
+      "output_path": "tests/test_export_metadata.py",
+      "sha256": "9ef17da8df3af378f0ca24100e09b1073b30aef4875e98171eabb3e589a753e2",
+      "template_git_blob_sha": "1dc91534c054c91b8ab5d2773c6da572cf2bb293",
+      "template_path": "exports/replication-worker/public/tests/test_export_metadata.py"
+    },
+    {
+      "mode": "100644",
+      "output_path": "tests/test_exported_integration.py",
+      "sha256": "2b063c7a58fd095264a1f164284e37dc2c33c7d45b34deadd2749e624f080e44",
+      "template_git_blob_sha": "812b680832958929377fbd87eaef48d202a5fde8",
+      "template_path": "exports/replication-worker/public/tests/test_exported_integration.py"
+    }
+  ],
+  "projected_files": [
+    {
+      "git_blob_sha": "2d9b859fb2042a81e48cda0e925d6655b55028ec",
+      "mode": "100644",
+      "output_path": "apps/__init__.py",
+      "source_path": "apps/__init__.py"
+    },
+    {
+      "git_blob_sha": "a47012d6d1a91a054279722245cf504ad43b4c1c",
+      "mode": "100644",
+      "output_path": "apps/_cli.py",
+      "source_path": "apps/_cli.py"
+    },
+    {
+      "git_blob_sha": "14a940e7a2281749a64c810ff6ea08f7e7b3c8d9",
+      "mode": "100644",
+      "output_path": "apps/replication_worker/__init__.py",
+      "source_path": "apps/replication_worker/__init__.py"
+    },
+    {
+      "git_blob_sha": "37fbd275484d558b466c8c50c588844129e73446",
+      "mode": "100644",
+      "output_path": "apps/replication_worker/cli.py",
+      "source_path": "apps/replication_worker/cli.py"
+    },
+    {
+      "git_blob_sha": "3b8d30d02d07a1cc0ae07ead22772cac9c66fc51",
+      "mode": "100644",
+      "output_path": "apps/replication_worker/target_config.py",
+      "source_path": "apps/replication_worker/target_config.py"
+    },
+    {
+      "git_blob_sha": "a1246092efd1e95defe919f10ba9ffa80187ff9a",
+      "mode": "100644",
+      "output_path": "packages/__init__.py",
+      "source_path": "packages/__init__.py"
+    },
+    {
+      "git_blob_sha": "efcebe2c8dcceda7ac5c93126b11cf7f805e689e",
+      "mode": "100644",
+      "output_path": "packages/database/__init__.py",
+      "source_path": "packages/database/__init__.py"
+    },
+    {
+      "git_blob_sha": "6e69d40633ba5ea3b997e91449d466ff321ff74e",
+      "mode": "100644",
+      "output_path": "packages/database/migrations.py",
+      "source_path": "packages/database/migrations.py"
+    },
+    {
+      "git_blob_sha": "451187aa585b321c9ca7c5834c6730ba2cb9d483",
+      "mode": "100644",
+      "output_path": "packages/database/replication_target_migration_v10.py",
+      "source_path": "packages/database/replication_target_migration_v10.py"
+    },
+    {
+      "git_blob_sha": "7f3fcee86d0592e211840a722e028aed8213ebef",
+      "mode": "100644",
+      "output_path": "packages/replication/__init__.py",
+      "source_path": "packages/replication/__init__.py"
+    },
+    {
+      "git_blob_sha": "f80df65f32acd3540e193ca19fc99e8eca62d7e8",
+      "mode": "100644",
+      "output_path": "packages/replication/adapters/__init__.py",
+      "source_path": "packages/replication/adapters/__init__.py"
+    },
+    {
+      "git_blob_sha": "2d7809a9767e077524a4fc5fbfa021a87a8f6bcf",
+      "mode": "100644",
+      "output_path": "packages/replication/adapters/gcs/__init__.py",
+      "source_path": "packages/replication/adapters/gcs/__init__.py"
+    },
+    {
+      "git_blob_sha": "313b3a89df51aeba4ec7213e6e3147aabbd4172e",
+      "mode": "100644",
+      "output_path": "packages/replication/adapters/gcs/model.py",
+      "source_path": "packages/replication/adapters/gcs/model.py"
+    },
+    {
+      "git_blob_sha": "a3a62897d95220706e5f5acfded47fae87b81922",
+      "mode": "100644",
+      "output_path": "packages/replication/adapters/gcs/target.py",
+      "source_path": "packages/replication/adapters/gcs/target.py"
+    },
+    {
+      "git_blob_sha": "9f4ad55a8723521a7f2ba83903eba4edf270a994",
+      "mode": "100644",
+      "output_path": "packages/replication/adapters/nfs/__init__.py",
+      "source_path": "packages/replication/adapters/nfs/__init__.py"
+    },
+    {
+      "git_blob_sha": "e042c31d0f8fde432e9fa3fb3db49bc6c6acb598",
+      "mode": "100644",
+      "output_path": "packages/replication/adapters/nfs/filesystem.py",
+      "source_path": "packages/replication/adapters/nfs/filesystem.py"
+    },
+    {
+      "git_blob_sha": "e8d694bed1f5380f2b00e0ed7b209111418cce7d",
+      "mode": "100644",
+      "output_path": "packages/replication/adapters/nfs/inspection.py",
+      "source_path": "packages/replication/adapters/nfs/inspection.py"
+    },
+    {
+      "git_blob_sha": "c99f867665ef59f071595801ec079bbcd1d796b2",
+      "mode": "100644",
+      "output_path": "packages/replication/adapters/nfs/model.py",
+      "source_path": "packages/replication/adapters/nfs/model.py"
+    },
+    {
+      "git_blob_sha": "1ebfdf1de269f392ea1153674b6d5681fc98ff57",
+      "mode": "100644",
+      "output_path": "packages/replication/adapters/nfs/target.py",
+      "source_path": "packages/replication/adapters/nfs/target.py"
+    },
+    {
+      "git_blob_sha": "6b34da3cdba543f52b122ace1d9c8a8f9c55b452",
+      "mode": "100644",
+      "output_path": "packages/replication/contracts/__init__.py",
+      "source_path": "packages/replication/contracts/__init__.py"
+    },
+    {
+      "git_blob_sha": "85d98f204c7eded61fe9cb873abe5b02bd6fe437",
+      "mode": "100644",
+      "output_path": "packages/replication/contracts/model.py",
+      "source_path": "packages/replication/contracts/model.py"
+    },
+    {
+      "git_blob_sha": "77b1cb9b00a1657325fd57f871d21bbed863196a",
+      "mode": "100644",
+      "output_path": "packages/replication/contracts/target.py",
+      "source_path": "packages/replication/contracts/target.py"
+    },
+    {
+      "git_blob_sha": "c69badcb002d2aff32640c3880266ce06d6f6b5c",
+      "mode": "100644",
+      "output_path": "packages/replication/core/__init__.py",
+      "source_path": "packages/replication/core/__init__.py"
+    },
+    {
+      "git_blob_sha": "61d05a4d045139476bd0e51f636cb8a77e287d37",
+      "mode": "100644",
+      "output_path": "packages/replication/core/authority.py",
+      "source_path": "packages/replication/core/authority.py"
+    },
+    {
+      "git_blob_sha": "10d4de4b5110b142523197259e2244162093ade5",
+      "mode": "100644",
+      "output_path": "packages/replication/core/source.py",
+      "source_path": "packages/replication/core/source.py"
+    },
+    {
+      "git_blob_sha": "936aba8aec0fcaa10eaffa8912ca3a3b7c64d963",
+      "mode": "100644",
+      "output_path": "packages/replication/core/worker.py",
+      "source_path": "packages/replication/core/worker.py"
+    },
+    {
+      "git_blob_sha": "c66ea6c5715f685bdd4e00b00c0e1be775d4b4bf",
+      "mode": "100644",
+      "output_path": "packages/replication/model.py",
+      "source_path": "packages/replication/model.py"
+    },
+    {
+      "git_blob_sha": "09fd44e121c8aa643928a30691c633a8e0d0215e",
+      "mode": "100644",
+      "output_path": "packages/replication/worker.py",
+      "source_path": "packages/replication/worker.py"
+    }
+  ],
+  "public_license": "MIT",
+  "publication_authorized": true,
+  "required_tools": [],
+  "schema_version": 1
+}
