@@ -2,7 +2,7 @@
 
 Component: `replication-worker`
 Canonical repository: `Seemorghdev/edge-evidence-platform`
-Canonical commit: `8e6af991ff5139413a5c9e43c66255a321dc4660`
+Canonical commit: `b896509469ba520875b5b61d331baf4cb50213a4`
 Entry point: `apps.replication_worker.cli:main`
 
 ## Runtime canonical closure
@@ -13,6 +13,12 @@ Entry point: `apps.replication_worker.cli:main`
 - `apps/replication_worker/cli.py`
 - `apps/replication_worker/target_config.py`
 - `packages/__init__.py`
+- `packages/agent_contracts/__init__.py`
+- `packages/agent_contracts/canonical.py`
+- `packages/agent_contracts/model.py`
+- `packages/agent_contracts/policy.py`
+- `packages/agent_contracts/processor.py`
+- `packages/agent_contracts/replication.py`
 - `packages/database/__init__.py`
 - `packages/database/migrations.py`
 - `packages/database/replication_target_migration_v10.py`
@@ -38,6 +44,9 @@ Entry point: `apps.replication_worker.cli:main`
 ## Standalone support canonical files
 
 - `packages/replication/model.py`
+- `tests/unit/test_replication_gcs.py`
+- `tests/unit/test_replication_target_config.py`
+- `tests/unit/test_replication_target_contract.py`
 
 ## External prerequisites
 

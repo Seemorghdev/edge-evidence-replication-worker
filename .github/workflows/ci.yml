@@ -1,4 +1,4 @@
-name: CI
+name: exported-behavior
 
 on:
   push:
@@ -8,25 +8,136 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  base-install:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        extra: ["dev", "dev,gcs"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Install
-        run: python -m pip install -e ".[${{ matrix.extra }}]"
-      - name: Compile
-        run: python -m compileall -q apps packages
-      - name: Test
-        shell: bash
+      - name: Install base package without Google SDK
         run: |
-          if [[ "${{ matrix.extra }}" == "dev" ]]; then
-            python -m pytest -q -m "not gcs"
-          else
-            python -m pytest -q -m "gcs"
-          fi
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev]'
+          python - <<'PY'
+          import importlib.util
+
+          try:
+              found = importlib.util.find_spec("google.cloud.storage")
+          except ModuleNotFoundError:
+              found = None
+          assert found is None
+          PY
+      - name: Compile exported runtime and schema closure
+        run: >-
+          python -m compileall -q
+          apps/_cli.py
+          apps/replication_worker
+          packages/database
+          packages/replication
+          packages/agent_contracts
+          demo/run_demo.py
+      - name: Prove fresh schema-v10 authority construction
+        run: |
+          python - <<'PY'
+          import sqlite3
+          import tempfile
+          from pathlib import Path
+
+          from packages.database.migrations import MIGRATIONS, migrate
+
+          with tempfile.TemporaryDirectory(prefix="replication-export-migration-") as temp:
+              database = Path(temp) / "authority.sqlite3"
+              result = migrate(database)
+              assert result.current_version == 10
+              assert max(item.version for item in MIGRATIONS) == 10
+              with sqlite3.connect(database) as connection:
+                  assert connection.execute(
+                      "SELECT max(version) FROM schema_migrations"
+                  ).fetchone() == (10,)
+          PY
+      - name: Prove metadata base composition and bounded contracts
+        run: |
+          python -m pytest -q -m "not gcs" \
+            tests/test_export_metadata.py \
+            tests/test_agent_contracts.py \
+            tests/test_exported_integration.py \
+            tests/unit/test_replication_target_config.py::test_nfs_config_constructs_exact_target \
+            tests/unit/test_replication_target_config.py::test_unknown_missing_nested_or_secret_bearing_config_fails_closed \
+            tests/unit/test_replication_target_config.py::test_malformed_config_cli_error_is_path_neutral \
+            tests/unit/test_replication_target_config.py::test_base_import_and_nfs_config_do_not_load_google_sdk \
+            tests/unit/test_replication_target_config.py::test_gcs_config_reports_optional_sdk_absence_before_provider_io \
+            tests/unit/test_replication_target_contract.py
+      - name: Run and validate standalone acceptance demo
+        run: |
+          python demo/run_demo.py | tee /tmp/replication-worker-demo.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          receipt = json.loads(
+              Path("/tmp/replication-worker-demo.json").read_text(encoding="utf-8")
+          )
+          assert receipt["schema_version"] == 1
+          assert receipt["status"] == "pass"
+          assert receipt["proof_class"] == "standalone_synthetic_replication"
+          assert receipt["authority"]["database_schema_version"] == 10
+          assert receipt["first_run"] == {
+              "status": "pass",
+              "discovered": 2,
+              "inserted": 0,
+              "published": 1,
+              "adopted": 1,
+              "verified": 2,
+              "partials_cleaned": 1,
+          }
+          assert receipt["verification"]["verified"] == 2
+          assert receipt["second_run"]["published"] == 0
+          assert receipt["second_run"]["adopted"] == 0
+          assert receipt["second_run"]["inserted"] == 0
+          assert receipt["collision"] == {
+              "exit_code": 4,
+              "finding": "destination_collision",
+              "wrong_bytes_preserved": True,
+          }
+          assert receipt["final_state"] == {
+              "verified_objects": 2,
+              "pending_objects": 0,
+          }
+          assert receipt["invariants"]["exact_rerun_is_noop"] is True
+          assert receipt["invariants"]["collision_fails_closed"] is True
+          assert receipt["invariants"]["temporary_local_state_only"] is True
+          assert all(receipt["invariants"].values())
+          serialized = json.dumps(receipt, sort_keys=True)
+          forbidden = (
+              "/home/",
+              "/Users/",
+              "private" + "_key",
+              "client" + "_secret",
+              "to" + "ken",
+          )
+          for item in forbidden:
+              assert item not in serialized
+          PY
+
+  gcs-extra:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install exact optional GCS surface
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,gcs]'
+          python - <<'PY'
+          import google.cloud.storage
+
+          assert google.cloud.storage is not None
+          PY
+      - name: Prove fake-provider GCS semantics without network or credentials
+        run: |
+          python -m pytest -q \
+            tests/unit/test_replication_gcs.py \
+            tests/test_exported_integration.py::test_gcs_extra_constructs_provider_target_without_credentials

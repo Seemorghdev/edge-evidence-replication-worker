@@ -1,8 +1,8 @@
 {
-  "canonical_commit": "8e6af991ff5139413a5c9e43c66255a321dc4660",
+  "canonical_commit": "b896509469ba520875b5b61d331baf4cb50213a4",
   "canonical_repository": "Seemorghdev/edge-evidence-platform",
   "component": "replication-worker",
-  "content_tree_sha256": "7bbd6199e946a4c917a0b7df68a99c41d6e8b25414676b6c6a5dfe0e221c1c61",
+  "content_tree_sha256": "0163bb5e742e071fba6e7b957b7c818639865b2aac53373fc742b48c454209c9",
   "dependency_closure": [
     "apps/__init__.py",
     "apps/_cli.py",
@@ -10,6 +10,12 @@
     "apps/replication_worker/cli.py",
     "apps/replication_worker/target_config.py",
     "packages/__init__.py",
+    "packages/agent_contracts/__init__.py",
+    "packages/agent_contracts/canonical.py",
+    "packages/agent_contracts/model.py",
+    "packages/agent_contracts/policy.py",
+    "packages/agent_contracts/processor.py",
+    "packages/agent_contracts/replication.py",
     "packages/database/__init__.py",
     "packages/database/migrations.py",
     "packages/database/replication_target_migration_v10.py",
@@ -33,7 +39,7 @@
     "packages/replication/worker.py"
   ],
   "descriptor": {
-    "git_blob_sha": "de2942a8d5e4daf8366e77be242443ef11602ff8",
+    "git_blob_sha": "351b1d1ac8d30bed5668740f2c1710f20b46b647",
     "path": "exports/replication-worker/export.toml"
   },
   "entry_point": "apps.replication_worker.cli:main",
@@ -46,8 +52,8 @@
     {
       "mode": "100644",
       "output_path": ".github/workflows/ci.yml",
-      "sha256": "6c9c6e93be2c852dbb99c8595362602162fb4ee76a459feededad1740524c858",
-      "template_git_blob_sha": "6eff74140bb02b19e991b5f87fe07fe44ba2a16f",
+      "sha256": "9f89b2afc0351bf340103e28c80ce52f7d2892e9002e636acf57f4a8cf53c5ab",
+      "template_git_blob_sha": "24410eddffe0784c1fb31bc803fcaea030270b09",
       "template_path": "exports/replication-worker/public/.github/workflows/ci.yml"
     },
     {
@@ -60,7 +66,7 @@
     {
       "mode": "100644",
       "output_path": "DEPENDENCY_BOUNDARY.md",
-      "sha256": "e8815b55ce23fa46f6b3c129b7f997196d55d8682f748ac17835109c8dd91feb",
+      "sha256": "e032947828a3222efbab1cd8e995852c6b170edabdf7ba8d02a2a7aacca7d11c",
       "template_git_blob_sha": "",
       "template_path": "<generated>"
     },
@@ -74,9 +80,16 @@
     {
       "mode": "100644",
       "output_path": "README.md",
-      "sha256": "d7848e3b6fbbaaa8ae4cad983916481249ee676d704fd8c9329ce0981cf63584",
-      "template_git_blob_sha": "766e08172ae9b111ae04028b6faac64240d531ae",
+      "sha256": "bba5f0b130a1ff5885826d79bd649387451363692caf8dac8051700c679f465e",
+      "template_git_blob_sha": "8b7e2e296241ee13d0f582c328295ac33bc19844",
       "template_path": "exports/replication-worker/public/README.md"
+    },
+    {
+      "mode": "100644",
+      "output_path": "demo/run_demo.py",
+      "sha256": "121ea8d42a6bad60e48b6788c9df8b759f7d1c41bade1e77e18c83f1a84d3ca5",
+      "template_git_blob_sha": "f581e94bbc23e1c62c2ec1739ef7fbfb651a1821",
+      "template_path": "exports/replication-worker/public/demo/run_demo.py"
     },
     {
       "mode": "100644",
@@ -87,16 +100,23 @@
     },
     {
       "mode": "100644",
+      "output_path": "tests/test_agent_contracts.py",
+      "sha256": "ee83ef14fdc6234ee221f55b0b76df6c9a7f6f2e8aa2d449112a0cc53b16c90d",
+      "template_git_blob_sha": "76f5c3947f06d53193cb81ad4743ec53803cc6b6",
+      "template_path": "exports/replication-worker/public/tests/test_agent_contracts.py"
+    },
+    {
+      "mode": "100644",
       "output_path": "tests/test_export_metadata.py",
-      "sha256": "9ef17da8df3af378f0ca24100e09b1073b30aef4875e98171eabb3e589a753e2",
-      "template_git_blob_sha": "1dc91534c054c91b8ab5d2773c6da572cf2bb293",
+      "sha256": "d41c49bc5e7559fca9bc76ec427bd72d70b7de17b12c8219e60010a689c30216",
+      "template_git_blob_sha": "30cfdfe96674b3c5e6e464ae584bcbe13a71134a",
       "template_path": "exports/replication-worker/public/tests/test_export_metadata.py"
     },
     {
       "mode": "100644",
       "output_path": "tests/test_exported_integration.py",
-      "sha256": "2b063c7a58fd095264a1f164284e37dc2c33c7d45b34deadd2749e624f080e44",
-      "template_git_blob_sha": "812b680832958929377fbd87eaef48d202a5fde8",
+      "sha256": "fb6e2672d7048e95ebf796b3b06c760da56dd8e9c0b2859706b2186d47c5463e",
+      "template_git_blob_sha": "cd82aefb881e8ca2865dd765049f8251065d1e57",
       "template_path": "exports/replication-worker/public/tests/test_exported_integration.py"
     }
   ],
@@ -136,6 +156,42 @@
       "mode": "100644",
       "output_path": "packages/__init__.py",
       "source_path": "packages/__init__.py"
+    },
+    {
+      "git_blob_sha": "f38edf17b4f1b3d4af3cd9adc9bd89720bbdef90",
+      "mode": "100644",
+      "output_path": "packages/agent_contracts/__init__.py",
+      "source_path": "packages/agent_contracts/__init__.py"
+    },
+    {
+      "git_blob_sha": "4d2484eb35c1aaf35dc4ccb6db1c1af13eb99237",
+      "mode": "100644",
+      "output_path": "packages/agent_contracts/canonical.py",
+      "source_path": "packages/agent_contracts/canonical.py"
+    },
+    {
+      "git_blob_sha": "afec5270f339e8d7dff5b859378381244e1dd531",
+      "mode": "100644",
+      "output_path": "packages/agent_contracts/model.py",
+      "source_path": "packages/agent_contracts/model.py"
+    },
+    {
+      "git_blob_sha": "c12e6c1cfe1f36cc94d69ce5423ee2344ee145d3",
+      "mode": "100644",
+      "output_path": "packages/agent_contracts/policy.py",
+      "source_path": "packages/agent_contracts/policy.py"
+    },
+    {
+      "git_blob_sha": "38d3c56dac41b110dc171916ac4d36f823bae184",
+      "mode": "100644",
+      "output_path": "packages/agent_contracts/processor.py",
+      "source_path": "packages/agent_contracts/processor.py"
+    },
+    {
+      "git_blob_sha": "83b9f4440fba9cc13c24905e8919b8fd8ecdefb8",
+      "mode": "100644",
+      "output_path": "packages/agent_contracts/replication.py",
+      "source_path": "packages/agent_contracts/replication.py"
     },
     {
       "git_blob_sha": "efcebe2c8dcceda7ac5c93126b11cf7f805e689e",
@@ -268,6 +324,24 @@
       "mode": "100644",
       "output_path": "packages/replication/worker.py",
       "source_path": "packages/replication/worker.py"
+    },
+    {
+      "git_blob_sha": "b2f853f48fdb7dbcaaec8340665b39e0a3a6dcc4",
+      "mode": "100644",
+      "output_path": "tests/unit/test_replication_gcs.py",
+      "source_path": "tests/unit/test_replication_gcs.py"
+    },
+    {
+      "git_blob_sha": "5526b60bd17115376309c2d18805648314457042",
+      "mode": "100644",
+      "output_path": "tests/unit/test_replication_target_config.py",
+      "source_path": "tests/unit/test_replication_target_config.py"
+    },
+    {
+      "git_blob_sha": "49139c7f6336c86a631016185b86df670b8b42eb",
+      "mode": "100644",
+      "output_path": "tests/unit/test_replication_target_contract.py",
+      "source_path": "tests/unit/test_replication_target_contract.py"
     }
   ],
   "public_license": "MIT",
